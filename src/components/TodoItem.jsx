@@ -1,9 +1,18 @@
-function TodoItem({ text, isCompleted }) {
+import { useDispatch } from "react-redux";
+import { removeTodoActionCreator } from "../redux/action/todoActions";
+
+function TodoItem({ id, text, isCompleted }) {
+  const dispatch = useDispatch();
+
+  function removeTodo() {
+    dispatch(removeTodoActionCreator(id));
+  }
+
   return (
     <div className="todo-item">
       <input type="checkbox" checked={isCompleted} />
       <p>{text}</p>
-      <button>X</button>
+      <button onClick={removeTodo}>X</button>
     </div>
   );
 }
